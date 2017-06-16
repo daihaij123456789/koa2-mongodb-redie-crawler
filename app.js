@@ -11,11 +11,11 @@ const logger = require('koa-logger');
 
 var mongoose = require('./lib/config/mongoose.js');
 var db = mongoose();
-
+var config = require('./lib/config/config');
 const index = require('./routes/index');
 const users = require('./routes/users');
-
-
+var Promise = require('bluebird');
+var request = Promise.promisify(require('request'));
 
 // middlewares
 app.use(convert(bodyparser));
@@ -46,5 +46,24 @@ app.on('error', function(err, ctx) {
 	logger.error('server error', err, ctx);
 });
 
+/*;
+console.log()
+
+console.log(data)*/
+var Crawler = require('./lib/crawler/crawler')
+
+var opts = {
+	url: 'http://api.douban.com/v2/movie/subject/',
+	encoding: null,
+	mothod: 'GET'
+}
+var http = 'https://github.com';
+
+request(opts).then(function(res) {
+	var crawler = Crawler.CrawlerMore(http,'js',5);
+	return crawler();
+}).then(function(data) {
+	console.log(data)
+})
 
 module.exports = app;
