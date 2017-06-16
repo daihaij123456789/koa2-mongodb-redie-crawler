@@ -50,7 +50,7 @@ app.on('error', function(err, ctx) {
 console.log()
 
 console.log(data)*/
-var Crawler = require('./lib/crawler/crawler')
+/*var Crawler = require('./lib/crawler/crawler')
 
 var opts = {
 	url: 'http://api.douban.com/v2/movie/subject/',
@@ -64,6 +64,6 @@ request(opts).then(function(res) {
 	return crawler();
 }).then(function(data) {
 	console.log(data)
-})
+})*/
 
 module.exports = app;

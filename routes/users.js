@@ -1,8 +1,7 @@
 var router = require('koa-router')();
-var newsbll = require('../lib/bll/newsbll');
 
-var NewsController = require('../lib/controllers/NewsController.js');
-
+var NewsController = require('../lib/controllers/NewsController');
+var GithubLinkController = require('../lib/controllers/GithubLinkController');
 router.get('/', function(ctx, next) {
 	ctx.body = 'this a users response!';
 });
@@ -24,5 +23,10 @@ router.get('/newest', async function(ctx, next) {
 	var items = await newsController.findAllNewest();
 	ctx.body = items;
 })
-
+router.get('/githubLink', async function(ctx, next) {
+	console.log('users/githubLink');
+	var items = await GithubLinkController.findAllGithubLink();
+	
+	ctx.body = items;
+})
 module.exports = router;
